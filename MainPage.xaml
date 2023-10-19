@@ -1,0 +1,38 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDo"
+             x:Class="ToDo.MainPage">
+    <StackLayout>
+        <!-- ごほうびポイントのセクション -->
+        <StackLayout Orientation="Horizontal">
+            <Label Text="ごほうびポイント: " VerticalOptions="CenterAndExpand" />
+            <Entry x:Name="rewardEntry" IsEnabled="false" />
+            <Switch x:Name="rewardEditSwitch" Toggled="RewardEditSwitch_Toggled" />
+        </StackLayout>
+
+        <!-- ToDoの追加セクション -->
+        <Entry Placeholder="新しいタスクを追加" x:Name="taskEntry" />
+        <Button Text="追加" Clicked="AddTask_Clicked" />
+
+        <ListView x:Name="taskListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Title}" VerticalOptions="CenterAndExpand" />
+                            <Switch IsToggled="{Binding IsDone}" Toggled="TaskToggled" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="完了したタスクをクリア" Clicked="ClearCompletedTasks_Clicked" />
+
+        <!-- ポイント表示とリセットボタン -->
+        <StackLayout Orientation="Horizontal">
+            <Label x:Name="pointsLabel" Text="現在のポイント: 0" VerticalOptions="CenterAndExpand" />
+            <Button Text="リセット" Clicked="ResetPoints_Clicked" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
